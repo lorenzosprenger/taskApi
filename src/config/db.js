@@ -11,14 +11,14 @@ const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.PORT
+    database: process.env.DB_DATABASE
 });
 
 // Testa se o banco esta conectado
 connection.connect((err) => {
   if (err) {
-    throw err;
+    console.log("Erro ao conectar com o banco de dados: ", err.stack);
+    return;
   } else {
     console.log("Mysql Connected!");
   }

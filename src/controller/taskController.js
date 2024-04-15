@@ -4,12 +4,12 @@ const dotenv = require('dotenv').config();
 async function storeTask(request, response) {
     const params = Array(
         request.body.title,
-        request.body.description
+        request.body.discription
     )
 
-    const query = "INSERT INTO API_LP (title, description) VALUES(?,?)";
+    const query = "INSERT INTO task_api(title, discription) VALUES(?,?)";
 
-    connection:query(query, params, (err, results) => {
+    connection.query(query, params, (err, results) => {
         if(results) {
             response
             .status(201)
@@ -24,7 +24,8 @@ async function storeTask(request, response) {
             .status(400)
             .json({
                 sucess: false,
-                message: "Ops, deu problemas!"
+                message: "Ops, deu problemas!",
+                data: err
             })
         }
     })
